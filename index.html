@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evangelos Bangoudis | Data Scientist</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            scroll-behavior: smooth;
+            color: #222;
+            background-color: #fff;
+        }
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: white;
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.5rem 3rem;
+        }
+        header.scrolled {
+            background: #ffcc00;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+        nav {
+            display: flex;
+            gap: 2rem;
+        }
+        nav a {
+            text-decoration: none;
+            color: #000;
+            font-weight: 600;
+        }
+        nav a:hover {
+            color: #d12d2d;
+        }
+        #logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #ffcc00;
+        }
+        header.scrolled #logo {
+            color: #000;
+        }
+        #home {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: white;
+        }
+        #home h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #111;
+            margin-bottom: 0.5rem;
+        }
+        .divider {
+            width: 50px;
+            height: 3px;
+            background: #d12d2d;
+            margin: 10px auto;
+            border-radius: 5px;
+        }
+        #home p {
+            color: #666;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+        .category-bar {
+            background-color: #ffcc00;
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            padding: 1.2rem 0;
+            font-weight: 600;
+            color: #000;
+            margin-bottom: 2rem;
+            width: 95%;
+            box-shadow: 0 4px 0 #ffe082;
+        }
+        .category-bar span {
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        .category-bar span:hover {
+            color: #d12d2d;
+        }
+        .projects-placeholder {
+            height: 400px;
+            width: 85%;
+            border: 2px dashed #ffcc00;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 4rem;
+            color: #999;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+        }
+        #about {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 3rem;
+            padding: 120px 20px;
+            background-color: #fafafa;
+        }
+        #about img {
+            width: 300px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .about-text {
+            max-width: 600px;
+            text-align: left;
+        }
+        .about-text h2 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        .about-text .divider {
+            margin: 10px 0;
+        }
+        .about-text p {
+            color: #444;
+            line-height: 1.6;
+        }
+        #contact {
+            background: #ffcc00;
+            padding: 80px 20px;
+            color: #000;
+            text-align: center;
+        }
+        .contact-icons {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+        .contact-icons a img {
+            width: 50px;
+            height: 50px;
+            transition: transform 0.3s ease;
+        }
+        .contact-icons a img:hover {
+            transform: scale(1.15);
+        }
+        footer {
+            background: #f1f1f1;
+            text-align: center;
+            padding: 1rem;
+            font-size: 0.9rem;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <header id="main-header">
+        <div id="logo">EB</div>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <section id="home">
+        <h1>Evangelos Bangoudis</h1>
+        <div class="divider"></div>
+        <p>Hello! Glad to see you here. This is a collection of my personal data science and analytics projects made during my free time.</p>
+        <div class="divider"></div>
+        <div class="category-bar">
+            <span>All Categories</span>
+            <span>Python</span>
+            <span>Machine Learning</span>
+            <span>R Code</span>
+        </div>
+        <div class="projects-placeholder">Project Showcase Coming Soon</div>
+    </section>
+
+    <section id="about">
+        <img src="pic me.jpg" alt="Evangelos Bangoudis">
+        <div class="about-text">
+            <h2>About Me</h2>
+            <div class="divider"></div>
+            <p>I’m a Data Scientist currently pursuing my Master’s degree in Data Science at the University of Texas at Austin.</p>
+            <p>Beyond data science, I enjoy mathematics, learning new things, and traveling the world.</p>
+            <p>I’m fluent in English, German, and Greek.</p>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Work With Me</h2>
+        <div class="contact-icons">
+            <a href="https://www.linkedin.com/in/evangelosbangoudis/" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn"></a>
+            <a href="mailto:evangelos@example.com"><img src="https://cdn-icons-png.flaticon.com/512/281/281769.png" alt="Email"></a>
+            <a href="https://github.com/evangelosbangoudis" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/733/733553.png" alt="GitHub"></a>
+        </div>
+    </section>
+
+    <footer>
+        © 2025 Evangelos Bangoudis. All rights reserved.
+    </footer>
+
+    <script>
+        const header = document.getElementById('main-header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>
