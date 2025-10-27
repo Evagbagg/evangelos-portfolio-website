@@ -34,7 +34,7 @@
     nav {
       display: flex;
       gap: 1.2rem;
-      margin-right: 12rem;
+      margin-right: 9rem;
     }
 
     nav a {
@@ -127,15 +127,17 @@
 
     .project-showcase {
       display: flex;
-      justify-content: center;
+      justify-content: flex-start;
       align-items: center;
-      padding: 3rem 0;
+      flex-wrap: wrap;
+      gap: 2rem;
+      padding: 3rem 5rem;
     }
 
     .project-card {
       position: relative;
-      width: 60%;
-      max-width: 700px;
+      width: 30%;
+      min-width: 250px;
       border: 2px dashed #ffcc00;
       overflow: hidden;
       cursor: pointer;
@@ -185,7 +187,7 @@
     .project-overlay p {
       font-size: 1rem;
       font-style: italic;
-      color: #ddd;
+      color: #fff;
     }
 
     #about {
