@@ -76,7 +76,7 @@
       margin-bottom: 0.8rem;
     }
 
-    /* Original red divider with one centered dot */
+    /* Red divider with center dot */
     .divider {
       position: relative;
       width: 140px;
@@ -192,7 +192,7 @@
       width: 300px;
       height: auto;
       border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
 
     .about-text {
@@ -228,10 +228,6 @@
       border-radius: 50%;
     }
 
-    .about-text .divider::after {
-      content: none;
-    }
-
     #contact {
       background: #ffcc00;
       padding: 80px 20px;
@@ -265,11 +261,11 @@
     }
   </style>
 </head>
+
 <body>
   <header id="main-header">
     <div id="logo">EB</div>
     <nav>
-      <!-- data-target used for smooth scrolling without changing URL -->
       <a href="#" data-target="home">Home</a>
       <a href="#" data-target="about">About</a>
       <a href="mailto:evangelos@bangoudis.com">Contact</a>
@@ -280,6 +276,7 @@
     <h1>Evangelos Bangoudis</h1>
     <div class="divider"></div>
     <p>Hello! Glad to see you here. This is a collection of my personal data science and analytics projects made during my free time.</p>
+
     <div class="category-bar"></div>
 
     <div class="project-showcase">
@@ -298,6 +295,15 @@
         <img src="btree.png" alt="B-Tree Data Structure">
         <div class="project-overlay">
           <h3>B-Tree Data Structure</h3>
+          <p>(Python)</p>
+        </div>
+      </a>
+
+      <!-- Project 3 (NEW → WIKIRACER) -->
+      <a href="wikiracer.html" class="project-card">
+        <img src="wikiracer.png" alt="WikiRacer">
+        <div class="project-overlay">
+          <h3>WikiRacer</h3>
           <p>(Python)</p>
         </div>
       </a>
@@ -346,7 +352,7 @@
       }
     });
 
-    // smooth scroll without changing URL
+    // Smooth scroll without URL change
     document.querySelectorAll('nav a[data-target]').forEach(link => {
       link.addEventListener('click', (e) => {
         e.preventDefault();
@@ -358,5 +364,6 @@
       });
     });
   </script>
+
 </body>
 </html>
