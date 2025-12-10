@@ -41,6 +41,7 @@
       text-decoration: none;
       color: #000;
       font-weight: 600;
+      cursor: pointer;
     }
 
     nav a:hover {
@@ -75,6 +76,7 @@
       margin-bottom: 0.8rem;
     }
 
+    /* Original red divider with one centered dot */
     .divider {
       position: relative;
       width: 140px;
@@ -83,7 +85,7 @@
       margin: 15px auto;
       border-radius: 5px;
     }
-    
+
     .divider::after {
       content: "";
       position: absolute;
@@ -95,6 +97,7 @@
       background: #d12d2d;
       border-radius: 50%;
     }
+
     #home p {
       color: #666;
       font-size: 1.1rem;
@@ -104,6 +107,7 @@
 
     .category-bar {
       background-color: #ffcc00;
+      display: block;
       height: 60px;
       width: 95%;
       margin-bottom: 2rem;
@@ -113,6 +117,7 @@
     .project-showcase {
       display: flex;
       justify-content: flex-start;
+      align-items: center;
       flex-wrap: wrap;
       gap: 2rem;
       padding: 3rem 5rem;
@@ -128,15 +133,15 @@
       transition: transform 0.3s ease;
     }
 
-    .project-card img {
-        width: 100%;
-        height: auto;
-        display: block;
-        transition: all 0.3s ease;
-    }
-
     .project-card:hover {
       transform: scale(1.02);
+    }
+
+    .project-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: all 0.3s ease;
     }
 
     .project-card:hover img {
@@ -223,6 +228,10 @@
       border-radius: 50%;
     }
 
+    .about-text .divider::after {
+      content: none;
+    }
+
     #contact {
       background: #ffcc00;
       padding: 80px 20px;
@@ -237,13 +246,13 @@
       margin-top: 1.5rem;
     }
 
-    .contact-icons img {
+    .contact-icons a img {
       width: 50px;
       height: 50px;
       transition: transform 0.3s ease;
     }
 
-    .contact-icons img:hover {
+    .contact-icons a img:hover {
       transform: scale(1.15);
     }
 
@@ -256,13 +265,13 @@
     }
   </style>
 </head>
-
 <body>
   <header id="main-header">
     <div id="logo">EB</div>
     <nav>
-      <a href="#home">Home</a>
-      <a href="#about">About</a>
+      <!-- data-target used for smooth scrolling without changing URL -->
+      <a href="#" data-target="home">Home</a>
+      <a href="#" data-target="about">About</a>
       <a href="mailto:evangelos@bangoudis.com">Contact</a>
     </nav>
   </header>
@@ -270,14 +279,13 @@
   <section id="home">
     <h1>Evangelos Bangoudis</h1>
     <div class="divider"></div>
-    <p>Hello! Glad to see you here. This is a collection of my personal data science and analytics projects.</p>
-
+    <p>Hello! Glad to see you here. This is a collection of my personal data science and analytics projects made during my free time.</p>
     <div class="category-bar"></div>
 
     <div class="project-showcase">
 
       <!-- Project 1 -->
-      <a href="space-race.html" target="_blank" class="project-card">
+      <a href="space-race.html" class="project-card">
         <img src="space race.png" alt="Who leads the space race?">
         <div class="project-overlay">
           <h3>Who leads the space race?</h3>
@@ -286,7 +294,7 @@
       </a>
 
       <!-- Project 2 -->
-      <a href="btree.html" target="_blank" class="project-card">
+      <a href="btree.html" class="project-card">
         <img src="btree.png" alt="B-Tree Data Structure">
         <div class="project-overlay">
           <h3>B-Tree Data Structure</h3>
@@ -323,10 +331,13 @@
     </div>
   </section>
 
-  <footer>© 2025 Evangelos Bangoudis. All rights reserved.</footer>
+  <footer>
+    © 2025 Evangelos Bangoudis. All rights reserved.
+  </footer>
 
   <script>
     const header = document.getElementById('main-header');
+
     window.addEventListener('scroll', () => {
       if (window.scrollY > 50) {
         header.classList.add('scrolled');
@@ -334,9 +345,18 @@
         header.classList.remove('scrolled');
       }
     });
-  </script>
 
+    // smooth scroll without changing URL
+    document.querySelectorAll('nav a[data-target]').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const id = link.getAttribute('data-target');
+        const section = document.getElementById(id);
+        if (section) {
+          section.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
 </body>
 </html>
-
-
