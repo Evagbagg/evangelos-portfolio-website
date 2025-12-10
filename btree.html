@@ -1,36 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>B-Tree Data Structure</title>
-
-<style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>B-Tree Data Structure</title>
+  <style>
     body {
-        margin: 0;
-        font-family: 'Helvetica Neue', Arial, sans-serif;
-        background-color: #fff;
-        color: #222;
-        scroll-behavior: smooth;
+      margin: 0;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      background: #f3f7fa;
+      color: #222;
     }
 
-    /* SAME HEADER AS INDEX.HTML */
+    /* Header same as homepage */
     header {
       position: fixed;
       top: 0;
       width: 100%;
       background: white;
-      transition: background 0.3s ease, box-shadow 0.3s ease;
-      z-index: 1000;
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      padding: 1.2rem 3rem 1.2rem 6rem;   /* << SAME AS INDEX */
-    }
-
-    header.scrolled {
-      background: #ffcc00;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      align-items: center;
+      padding: 1.2rem 3rem 1.2rem 6rem;
+      z-index: 1000;
+      transition: background 0.3s ease;
     }
 
     #logo {
@@ -39,14 +32,10 @@
       color: #ffcc00;
     }
 
-    header.scrolled #logo {
-      color: #000;
-    }
-
     nav {
       display: flex;
       gap: 1.2rem;
-      margin-right: 9rem;   /* << SAME AS INDEX.HTML */
+      margin-right: 9rem;
     }
 
     nav a {
@@ -59,79 +48,117 @@
       color: #d12d2d;
     }
 
-    /* BACK BUTTON */
+    /* Back Button */
     .back-btn {
-        position: absolute;
-        left: 3rem;
-        top: 100px;
-        width: 50px;
-        height: 50px;
-        background: #0a66c2;
-        color: white;
-        font-size: 1.5rem;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-decoration: none;
-        transition: transform 0.2s ease;
+      position: absolute;
+      top: 90px;
+      left: 50px;
+      width: 55px;
+      height: 55px;
+      background: #0a63c9;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      color: white;
+      font-size: 24px;
+      text-decoration: none;
     }
 
     .back-btn:hover {
-        transform: scale(1.15);
+      transform: scale(1.12);
+      background: #084fa3;
     }
-</style>
 
+    /* Title Section */
+    .project-container {
+      padding-top: 150px;
+      text-align: center;
+    }
+
+    .project-container h1 {
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: #111;
+    }
+
+    /* Tags */
+    .tag-box {
+      margin-top: 1rem;
+      display: flex;
+      justify-content: center;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      background: #0a63c9;
+      color: white;
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    /* Description */
+    .description {
+      max-width: 750px;
+      margin: 2rem auto;
+      font-size: 1.05rem;
+      line-height: 1.6;
+      color: #444;
+      text-align: center;
+    }
+
+    /* Image */
+    .project-image {
+      display: block;
+      margin: 2rem auto;
+      width: 55%;
+      border-radius: 12px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+    }
+  </style>
 </head>
-
 <body>
 
-<header id="main-header">
+  <header>
     <div id="logo">EB</div>
     <nav>
-        <a href="index.html">Home</a>
-        <a href="index.html#about">About</a>
-        <a href="mailto:evangelos@bangoudis.com">Contact</a>
+      <a href="index.html#home">Home</a>
+      <a href="index.html#about">About</a>
+      <a href="mailto:evangelos@bangoudis.com">Contact</a>
     </nav>
-</header>
+  </header>
 
-<!-- BACK BUTTON -->
-<div class="back-btn" onclick="location.href='index.html'">
-    ←
-</div>
+  <!-- Back Button -->
+  <a href="index.html" class="back-btn">←</a>
 
-<div class="content">
+  <section class="project-container">
     <h1>B-Tree Data Structure</h1>
 
-    <div class="tools">
-        <span class="tag">Python</span>
-        <span class="tag">Algorithms</span>
-        <span class="tag">Data Structures</span>
+    <!-- TAG LIST -->
+    <div class="tag-box">
+      <span class="tag">Python</span>
+      <span class="tag">Algorithms</span>
+      <span class="tag">Data Structures</span>
+      <span class="tag">Disk-Based Storage</span>
+      <span class="tag">Disk I/O Optimization</span>
+      <span class="tag">Database Indexing</span>
     </div>
 
-    <p>
-        This project explores the B-Tree data structure, widely used in databases and file systems
-        due to its ability to maintain sorted data and support fast insertions, deletions, and lookups.
-        I implemented a full B-Tree from scratch, including node splitting, merging, search logic,
-        and visual debugging tools.
+    <p class="description">
+      This project explores the internals of a fully implemented B-Tree — a disk-based, high-performance
+      indexing structure used in databases, filesystems, and large-scale storage systems. The implementation
+      supports core dictionary operations, efficient node splitting, persistence through disk blocks, and
+      optimized search through binary lookup across m-ary nodes.
     </p>
 
-    <div class="images">
-        <img src="btree.png" alt="B-Tree Visualization">
-        <!-- You may add more images here -->
-    </div>
-</div>
+    <img src="btree.png" class="project-image" alt="B-Tree Visualization">
 
-<script>
-    const header = document.getElementById("main-header");
-    window.addEventListener("scroll", () => {
-        if (window.scrollY > 50) {
-            header.classList.add("scrolled");
-        } else {
-            header.classList.remove("scrolled");
-        }
-    });
-</script>
+  </section>
 
 </body>
 </html>
