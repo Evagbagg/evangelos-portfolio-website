@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>B-Tree Data Structure</title>
+  <title>B-Tree Data Structure | Evangelos Bangoudis</title>
+
   <style>
     body {
       margin: 0;
@@ -12,18 +13,18 @@
       color: #222;
     }
 
-    /* Header same as homepage */
+    /* HEADER — same as index.html */
     header {
       position: fixed;
       top: 0;
       width: 100%;
       background: white;
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
       padding: 1.2rem 3rem 1.2rem 6rem;
       z-index: 1000;
-      transition: background 0.3s ease;
+      transition: background 0.3s ease, box-shadow 0.3s ease;
     }
 
     #logo {
@@ -40,61 +41,74 @@
 
     nav a {
       text-decoration: none;
-      color: #000;
       font-weight: 600;
+      color: #000;
     }
 
     nav a:hover {
       color: #d12d2d;
     }
 
-    /* Back Button */
+    /* BACK BUTTON */
     .back-btn {
       position: absolute;
-      top: 90px;
-      left: 50px;
-      width: 55px;
-      height: 55px;
-      background: #0a63c9;
+      top: 95px;
+      left: 30px;
+      background: #0a66c2;
+      color: white;
+      width: 48px;
+      height: 48px;
       border-radius: 50%;
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
       cursor: pointer;
-      transition: all 0.3s ease;
-      color: white;
-      font-size: 24px;
-      text-decoration: none;
+      transition: 0.25s ease;
     }
 
     .back-btn:hover {
       transform: scale(1.12);
-      background: #084fa3;
     }
 
-    /* Title Section */
-    .project-container {
-      padding-top: 150px;
+    .back-btn:hover::after {
+      content: " Back";
+      position: absolute;
+      left: 60px;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #0a66c2;
+      background: white;
+      padding: 4px 10px;
+      border-radius: 6px;
+      border: 2px solid #0a66c2;
+    }
+
+    /* MAIN CONTENT */
+    .content {
+      padding-top: 140px;
       text-align: center;
+      max-width: 900px;
+      margin: auto;
     }
 
-    .project-container h1 {
+    h1 {
       font-size: 2.4rem;
-      font-weight: 700;
-      color: #111;
+      margin-bottom: 0.5rem;
     }
 
-    /* Tags */
-    .tag-box {
-      margin-top: 1rem;
+    /* TAGS */
+    .tag-container {
       display: flex;
       justify-content: center;
-      gap: 0.6rem;
       flex-wrap: wrap;
+      gap: 0.7rem;
+      margin-top: 1rem;
+      margin-bottom: 2rem;
     }
 
     .tag {
-      background: #0a63c9;
+      background: #0a66c2;
       color: white;
       padding: 6px 14px;
       border-radius: 8px;
@@ -102,28 +116,52 @@
       font-weight: 600;
     }
 
-    /* Description */
+    /* DIVIDER (SAME as your original under-name red line) */
+    .divider {
+      position: relative;
+      width: 140px;
+      height: 2px;
+      background: #d12d2d;
+      margin: 18px auto;
+      border-radius: 5px;
+    }
+
+    .divider::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 10px;
+      height: 10px;
+      background: #d12d2d;
+      border-radius: 50%;
+    }
+
+    /* TEXT */
     .description {
-      max-width: 750px;
-      margin: 2rem auto;
       font-size: 1.05rem;
       line-height: 1.6;
       color: #444;
       text-align: center;
+      max-width: 800px;
+      margin: auto;
     }
 
-    /* Image */
+    /* IMAGE */
     .project-image {
       display: block;
-      margin: 2rem auto;
-      width: 55%;
-      border-radius: 12px;
-      box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+      margin: 2.5rem auto;
+      width: 70%;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
     }
   </style>
 </head>
+
 <body>
 
+  <!-- HEADER -->
   <header>
     <div id="logo">EB</div>
     <nav>
@@ -133,14 +171,16 @@
     </nav>
   </header>
 
-  <!-- Back Button -->
-  <a href="index.html" class="back-btn">←</a>
+  <!-- BACK BUTTON -->
+  <div class="back-btn" onclick="location.href='index.html'">←</div>
 
-  <section class="project-container">
+  <!-- MAIN CONTENT -->
+  <div class="content">
     <h1>B-Tree Data Structure</h1>
+    <div class="divider"></div>
 
-    <!-- TAG LIST -->
-    <div class="tag-box">
+    <!-- TAGS -->
+    <div class="tag-container">
       <span class="tag">Python</span>
       <span class="tag">Algorithms</span>
       <span class="tag">Data Structures</span>
@@ -149,16 +189,18 @@
       <span class="tag">Database Indexing</span>
     </div>
 
+    <!-- DESCRIPTION -->
     <p class="description">
-      This project explores the internals of a fully implemented B-Tree — a disk-based, high-performance
-      indexing structure used in databases, filesystems, and large-scale storage systems. The implementation
-      supports core dictionary operations, efficient node splitting, persistence through disk blocks, and
-      optimized search through binary lookup across m-ary nodes.
+      This project explores the construction of a fully functional disk-based B-Tree —
+      an essential indexing structure used in large-scale databases and file systems.
+      The implementation supports insertion and search operations, maintains strict balancing,
+      and stores all nodes on disk rather than memory, simulating real database engine constraints.
     </p>
 
-    <img src="btree.png" class="project-image" alt="B-Tree Visualization">
+    <!-- IMAGE -->
+    <img src="btree.png" alt="B-Tree Illustration" class="project-image">
 
-  </section>
+  </div>
 
 </body>
 </html>
