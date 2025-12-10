@@ -116,7 +116,7 @@
       font-weight: 600;
     }
 
-    /* DIVIDER (SAME as your original under-name red line) */
+    /* DIVIDER */
     .divider {
       position: relative;
       width: 140px;
@@ -146,6 +146,7 @@
       text-align: center;
       max-width: 800px;
       margin: auto;
+      margin-bottom: 2rem;
     }
 
     /* IMAGE */
@@ -189,16 +190,53 @@
       <span class="tag">Database Indexing</span>
     </div>
 
-    <!-- DESCRIPTION -->
+    <!-- PROJECT OVERVIEW -->
     <p class="description">
-      This project explores the construction of a fully functional disk-based B-Tree —
-      an essential indexing structure used in large-scale databases and file systems.
-      The implementation supports insertion and search operations, maintains strict balancing,
-      and stores all nodes on disk rather than memory, simulating real database engine constraints.
+      <strong>Project Overview</strong><br><br>
+      This project implements a disk-based B-Tree data structure that simulates how
+      databases manage indexing when nodes must be persisted to disk instead of memory.
+      The tree supports efficient <code>insert(key, value)</code> and <code>find(key)</code>
+      operations while maintaining balanced height, sorted keys, and configurable branching
+      factors (M and L). Each node is stored in its own disk block through a custom DISK
+      interface, introducing strict constraints that resemble real storage systems.
     </p>
 
     <!-- IMAGE -->
     <img src="btree.png" alt="B-Tree Illustration" class="project-image">
+
+    <!-- TASK REQUIREMENTS -->
+    <p class="description">
+      <strong>Task Requirements</strong><br><br>
+
+      <strong>Core Operations</strong><br>
+      • <code>insert(key, value)</code>: insert or overwrite keys while maintaining B-Tree invariants<br>
+      • <code>find(key)</code>: return the value for a key or <code>None</code><br><br>
+
+      <strong>Structural Constraints</strong><br>
+      • Nodes remain sorted<br>
+      • Height stays balanced<br>
+      • Branching factors defined by M (internal nodes) and L (leaf nodes)<br><br>
+
+      <strong>Disk-Based Architecture</strong><br>
+      • Each node resides in a separate disk block<br>
+      • Only <code>m</code>, <code>l</code>, and the root address remain in memory<br>
+      • All interactions occur through:<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;– <code>DISK.new()</code><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;– <code>DISK.write(address, node)</code><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;– <code>DISK.read(address)</code><br><br>
+
+      <strong>Implementation & Problem-Solving Highlights</strong><br>
+      • Managing a fully disk-backed data structure introduces complexity: every update requires
+        explicit writes, and stale in-memory references easily lead to structural corruption.<br>
+      • Node splitting is non-trivial: handling medians, redistributing children, and maintaining
+        invariants across recursive levels requires precise logic.<br>
+      • Debugging is more difficult than with in-memory trees due to incorrect disk writes,
+        missing updates, or reading outdated nodes — issues that pointer-based trees do not face.<br>
+      • Testing reveals subtle structural bugs (incorrect child pointer movement, unbalanced splits,
+        off-by-one errors), resolved through Pytest and custom visualizations.<br>
+      • The project requires careful coordination between algorithm design and disk constraints,
+        making it significantly more challenging than standard B-Tree implementations.
+    </p>
 
   </div>
 
