@@ -9,130 +9,79 @@
     body {
         margin: 0;
         font-family: 'Helvetica Neue', Arial, sans-serif;
-        background: #ffffff;
+        background-color: #fff;
         color: #222;
+        scroll-behavior: smooth;
     }
 
-    /* Top header (same as homepage) */
+    /* SAME HEADER AS INDEX.HTML */
     header {
-        position: fixed;
-        top: 0;
-        width: 100%;
-        padding: 1.2rem 3rem 1.2rem 6rem;
-        background: white;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        transition: background 0.3s ease, box-shadow 0.3s ease;
-        z-index: 1000;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: white;
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 3rem 1.2rem 6rem;   /* << SAME AS INDEX */
     }
 
     header.scrolled {
-        background: #ffcc00;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      background: #ffcc00;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     }
 
     #logo {
-        font-size: 2rem;
-        font-weight: bold;
-        color: #ffcc00;
+      font-size: 2rem;
+      font-weight: bold;
+      color: #ffcc00;
     }
 
     header.scrolled #logo {
-        color: #000;
+      color: #000;
+    }
+
+    nav {
+      display: flex;
+      gap: 1.2rem;
+      margin-right: 9rem;   /* << SAME AS INDEX.HTML */
     }
 
     nav a {
-        color: #000;
-        font-weight: 600;
-        margin-left: 1.2rem;
-        text-decoration: none;
+      text-decoration: none;
+      color: #000;
+      font-weight: 600;
     }
 
     nav a:hover {
-        color: #d12d2d;
+      color: #d12d2d;
     }
 
     /* BACK BUTTON */
     .back-btn {
-        position: fixed;
-        top: 90px;
-        left: 40px;
+        position: absolute;
+        left: 3rem;
+        top: 100px;
+        width: 50px;
+        height: 50px;
         background: #0a66c2;
         color: white;
-        width: 55px;
-        height: 55px;
+        font-size: 1.5rem;
         border-radius: 50%;
         display: flex;
-        justify-content: center;
         align-items: center;
-        font-size: 24px;
-        font-weight: bold;
-        cursor: pointer;
-        transition: all 0.25s ease;
-        z-index: 2000;
+        justify-content: center;
+        text-decoration: none;
+        transition: transform 0.2s ease;
     }
 
     .back-btn:hover {
-        width: 110px;
-        border-radius: 40px;
-    }
-
-    .back-btn:hover::after {
-        content: "Back";
-        margin-left: 10px;
-        font-size: 18px;
-        font-weight: 600;
-    }
-
-    /* Page layout */
-    .content {
-        padding-top: 160px;
-        max-width: 900px;
-        margin: auto;
-        text-align: center;
-    }
-
-    h1 {
-        font-size: 2.7rem;
-        font-weight: 700;
-    }
-
-    .tools {
-        margin-top: 12px;
-    }
-
-    .tag {
-        display: inline-block;
-        background: #0a66c2;
-        color: white;
-        padding: 8px 16px;
-        border-radius: 8px;
-        font-size: 14px;
-        margin: 5px;
-        font-weight: 600;
-    }
-
-    p {
-        margin-top: 25px;
-        line-height: 1.6;
-        font-size: 1.1rem;
-        text-align: left;
-    }
-
-    .images {
-        margin-top: 40px;
-        text-align: center;
-    }
-
-    .images img {
-        width: 80%;
-        max-width: 700px;
-        border-radius: 10px;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-        margin-bottom: 25px;
+        transform: scale(1.15);
     }
 </style>
+
 </head>
 
 <body>
