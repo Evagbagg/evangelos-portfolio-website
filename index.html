@@ -105,21 +105,15 @@
 
     .category-bar {
       background-color: #ffcc00;
-      display: flex;
-      justify-content: center;
-      gap: 3rem;
-      padding: 1.2rem 0;
-      font-weight: 600;
-      color: #000;
-      margin-bottom: 2rem;
+      height: 60px;
       width: 95%;
+      margin-bottom: 2rem;
       box-shadow: 0 4px 0 #ffe082;
     }
 
     .project-showcase {
       display: flex;
       justify-content: flex-start;
-      align-items: center;
       flex-wrap: wrap;
       gap: 2rem;
       padding: 3rem 5rem;
@@ -135,15 +129,15 @@
       transition: transform 0.3s ease;
     }
 
-    .project-card:hover {
-      transform: scale(1.02);
-    }
-
     .project-card img {
       width: 100%;
-      height: auto;
-      display: block;
+      height: 220px;
+      object-fit: cover;
       transition: all 0.3s ease;
+    }
+
+    .project-card:hover {
+      transform: scale(1.02);
     }
 
     .project-card:hover img {
@@ -230,10 +224,6 @@
       border-radius: 50%;
     }
 
-    .about-text .divider::after {
-      content: none;
-    }
-
     #contact {
       background: #ffcc00;
       padding: 80px 20px;
@@ -248,13 +238,13 @@
       margin-top: 1.5rem;
     }
 
-    .contact-icons a img {
+    .contact-icons img {
       width: 50px;
       height: 50px;
       transition: transform 0.3s ease;
     }
 
-    .contact-icons a img:hover {
+    .contact-icons img:hover {
       transform: scale(1.15);
     }
 
@@ -267,6 +257,7 @@
     }
   </style>
 </head>
+
 <body>
   <header id="main-header">
     <div id="logo">EB</div>
@@ -280,7 +271,8 @@
   <section id="home">
     <h1>Evangelos Bangoudis</h1>
     <div class="divider"></div>
-    <p>Hello! Glad to see you here. This is a collection of my personal data science and analytics projects made during my free time.</p>
+    <p>Hello! Glad to see you here. This is a collection of my personal data science and analytics projects.</p>
+
     <div class="category-bar"></div>
 
     <div class="project-showcase">
@@ -294,7 +286,7 @@
         </div>
       </a>
 
-      <!-- Project 2 (NEW) -->
+      <!-- Project 2 -->
       <a href="btree.html" target="_blank" class="project-card">
         <img src="btree.png" alt="B-Tree Data Structure">
         <div class="project-overlay">
@@ -332,9 +324,7 @@
     </div>
   </section>
 
-  <footer>
-    © 2025 Evangelos Bangoudis. All rights reserved.
-  </footer>
+  <footer>© 2025 Evangelos Bangoudis. All rights reserved.</footer>
 
   <script>
     const header = document.getElementById('main-header');
@@ -346,5 +336,6 @@
       }
     });
   </script>
+
 </body>
 </html>
