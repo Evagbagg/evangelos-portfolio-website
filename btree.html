@@ -5,15 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>B-Tree Data Structure | Evangelos Bangoudis</title>
 
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
   <style>
     body {
       margin: 0;
-      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-family: 'Open Sans', Arial, sans-serif;
       background: #f3f7fa;
       color: #222;
     }
 
-    /* HEADER — same as index.html */
+    /* HEADER */
     header {
       position: fixed;
       top: 0;
@@ -87,33 +90,14 @@
     /* MAIN CONTENT */
     .content {
       padding-top: 140px;
-      text-align: center;
       max-width: 900px;
       margin: auto;
+      text-align: center;
     }
 
     h1 {
       font-size: 2.4rem;
       margin-bottom: 0.5rem;
-    }
-
-    /* TAGS */
-    .tag-container {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 0.7rem;
-      margin-top: 1rem;
-      margin-bottom: 2rem;
-    }
-
-    .tag {
-      background: #0a66c2;
-      color: white;
-      padding: 6px 14px;
-      border-radius: 8px;
-      font-size: 0.9rem;
-      font-weight: 600;
     }
 
     /* DIVIDER */
@@ -138,15 +122,55 @@
       border-radius: 50%;
     }
 
-    /* TEXT */
-    .description {
-      font-size: 1.05rem;
+    /* TAGS */
+    .tag-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      margin-top: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .tag {
+      background: #0a66c2;
+      color: white;
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    /* === PROJECT OVERVIEW CARD === */
+    .overview-card {
+      background: white;
+      padding: 30px 40px;
+      margin: 0 auto 40px;
+      width: 70%;
+      border-radius: 14px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      transition: transform 0.2s ease;
       line-height: 1.6;
       color: #444;
+    }
+
+    .overview-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .overview-icon {
+      font-size: 2.8rem;
       text-align: center;
-      max-width: 800px;
-      margin: auto;
-      margin-bottom: 2rem;
+      margin-bottom: 10px;
+      color: #0a66c2;
+    }
+
+    .overview-title {
+      text-align: center;
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: #222;
     }
 
     /* IMAGE */
@@ -157,6 +181,72 @@
       border-radius: 10px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.15);
     }
+
+    /* === 3-COLUMN TASK SECTION === */
+    .task-section {
+      display: flex;
+      justify-content: center;
+      gap: 2.5rem;
+      padding: 0 10%;
+      margin-top: 50px;
+    }
+
+    .task-card {
+      background: white;
+      padding: 22px 20px;
+      width: 30%;
+      border-radius: 14px;
+      text-align: center;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+      transition: 0.25s ease;
+    }
+
+    .task-card:hover {
+      transform: translateY(-6px);
+    }
+
+    .task-icon {
+      font-size: 2.4rem;
+      margin-bottom: 8px;
+      color: #0a66c2;
+    }
+
+    .task-title {
+      font-weight: 700;
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+    }
+
+    /* LIST FIX — PERFECT BULLET ALIGNMENT */
+    .task-card ul {
+      padding-left: 18px;
+      margin: 0;
+      text-align: left;
+      list-style-type: disc;
+    }
+
+    .task-card li {
+      margin-bottom: 6px;
+      line-height: 1.55;
+      color: #444;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .overview-card,
+      .project-image {
+        width: 90%;
+      }
+
+      .task-section {
+        flex-direction: column;
+      }
+
+      .task-card {
+        width: 100%;
+      }
+    }
+
   </style>
 </head>
 
@@ -175,12 +265,11 @@
   <!-- BACK BUTTON -->
   <div class="back-btn" onclick="location.href='index.html'">←</div>
 
-  <!-- MAIN CONTENT -->
+  <!-- TITLE & TAGS -->
   <div class="content">
     <h1>B-Tree Data Structure</h1>
     <div class="divider"></div>
 
-    <!-- TAGS -->
     <div class="tag-container">
       <span class="tag">Python</span>
       <span class="tag">Algorithms</span>
@@ -189,10 +278,13 @@
       <span class="tag">Disk I/O Optimization</span>
       <span class="tag">Database Indexing</span>
     </div>
+  </div>
 
-    <!-- PROJECT OVERVIEW -->
-    <p class="description">
-      <strong>Project Overview</strong><br><br>
+  <!-- PROJECT OVERVIEW CARD -->
+  <div class="overview-card">
+    <div class="overview-icon">📘</div>
+    <div class="overview-title">Project Overview</div>
+    <p>
       This project implements a disk-based B-Tree data structure that simulates how
       databases manage indexing when nodes must be persisted to disk instead of memory.
       The tree supports efficient <code>insert(key, value)</code> and <code>find(key)</code>
@@ -200,44 +292,65 @@
       factors (M and L). Each node is stored in its own disk block through a custom DISK
       interface, introducing strict constraints that resemble real storage systems.
     </p>
+  </div>
 
-    <!-- IMAGE -->
-    <img src="btree.png" alt="B-Tree Illustration" class="project-image">
+  <!-- IMAGE -->
+  <img src="btree.png" alt="B-Tree Illustration" class="project-image">
 
-    <!-- TASK REQUIREMENTS -->
-    <p class="description">
-      <strong>Task Requirements</strong><br><br>
+  <!-- 3-COLUMN TASK SECTION -->
+  <div class="task-section">
 
-      <strong>Core Operations</strong><br>
-      • <code>insert(key, value)</code>: insert or overwrite keys while maintaining B-Tree invariants<br>
-      • <code>find(key)</code>: return the value for a key or <code>None</code><br><br>
+    <!-- Column 1 -->
+    <div class="task-card">
+      <div class="task-icon">⚙️</div>
+      <div class="task-title">Core Operations</div>
+      <ul>
+        <li><code>insert(key, value)</code> — Insert or overwrite keys while maintaining B-Tree invariants</li>
+        <li><code>find(key)</code> — Return the value for a key or <code>None</code></li>
+      </ul>
+    </div>
 
-      <strong>Structural Constraints</strong><br>
-      • Nodes remain sorted<br>
-      • Height stays balanced<br>
-      • Branching factors defined by M (internal nodes) and L (leaf nodes)<br><br>
+    <!-- Column 2 -->
+    <div class="task-card">
+      <div class="task-icon">🌲</div>
+      <div class="task-title">Structural Constraints</div>
+      <ul>
+        <li>Keys remain sorted</li>
+        <li>Height stays balanced</li>
+        <li>Branching factors defined by M (internal nodes) and L (leaf nodes)</li>
+      </ul>
+    </div>
 
-      <strong>Disk-Based Architecture</strong><br>
-      • Each node resides in a separate disk block<br>
-      • Only <code>m</code>, <code>l</code>, and the root address remain in memory<br>
-      • All interactions occur through:<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;– <code>DISK.new()</code><br>
-      &nbsp;&nbsp;&nbsp;&nbsp;– <code>DISK.write(address, node)</code><br>
-      &nbsp;&nbsp;&nbsp;&nbsp;– <code>DISK.read(address)</code><br><br>
+    <!-- Column 3 -->
+    <div class="task-card">
+      <div class="task-icon">💾</div>
+      <div class="task-title">Disk-Based Architecture</div>
+      <ul>
+        <li>Each node stored in a disk block</li>
+        <li>Only m, l, and the root address remain in memory</li>
+        <li>
+          All interactions occur through  
+          <code>DISK.new()</code>,  
+          <code>DISK.write()</code>,  
+          <code>DISK.read()</code>
+        </li>
+      </ul>
+    </div>
 
-      <strong>Implementation & Problem-Solving Highlights</strong><br>
-      • Managing a fully disk-backed data structure introduces complexity: every update requires
-        explicit writes, and stale in-memory references easily lead to structural corruption.<br>
-      • Node splitting is non-trivial: handling medians, redistributing children, and maintaining
-        invariants across recursive levels requires precise logic.<br>
-      • Debugging is more difficult than with in-memory trees due to incorrect disk writes,
-        missing updates, or reading outdated nodes — issues that pointer-based trees do not face.<br>
-      • Testing reveals subtle structural bugs (incorrect child pointer movement, unbalanced splits,
-        off-by-one errors), resolved through Pytest and custom visualizations.<br>
-      • The project requires careful coordination between algorithm design and disk constraints,
-        making it significantly more challenging than standard B-Tree implementations.
-    </p>
+  </div>
 
+  <!-- NEW FINAL CARD: IMPLEMENTATION HIGHLIGHTS -->
+  <div class="overview-card" style="margin-top: 50px;">
+    <div class="overview-icon">🧠</div>
+    <div class="overview-title">Implementation & Problem-Solving Highlights</div>
+
+    <ul>
+      <li>Managing a fully disk-backed data structure introduces complexity: every update requires explicit writes, and stale references easily corrupt the tree.</li>
+      <li>Node splitting is non-trivial: handling medians, redistributing children, and maintaining invariants across recursive levels requires precise logic.</li>
+      <li>Debugging is harder than in-memory trees because errors arise from incorrect disk writes or reading outdated nodes.</li>
+      <li>Testing uncovered subtle structural bugs—off-by-one errors, incorrect pointer movement, unbalanced splits—resolved through Pytest and visualization.</li>
+      <li>Overall, the project requires tight coordination between algorithm design and simulated storage constraints, making it far harder than standard B-Tree implementations.</li>
+    </ul>
   </div>
 
 </body>
