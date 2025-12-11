@@ -5,12 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Evangelos Bangoudis | Data Scientist</title>
   <style>
-	  body {
-	  transform: scale(0.9);
-	  transform-origin: top center;
-	}
-
     body {
+      transform: scale(0.9);
+      transform-origin: top center;
       margin: 0;
       font-family: 'Helvetica Neue', Arial, sans-serif;
       scroll-behavior: smooth;
@@ -81,7 +78,9 @@
       margin-bottom: 0.8rem;
     }
 
-    /* Red divider with center dot */
+    /* ----------------------- */
+    /* MAIN DIVIDER (HAS DOT)  */
+    /* ----------------------- */
     .divider {
       position: relative;
       width: 140px;
@@ -91,7 +90,8 @@
       border-radius: 5px;
     }
 
-    .divider::after {
+    /* Center dot ONLY for the main divider */
+    #home .divider::after {
       content: "";
       position: absolute;
       left: 50%;
@@ -128,15 +128,14 @@
       padding: 3rem 0;
     }
 
-	.project-card {
-	  position: relative;
-	  width: 27%;              /* Change cards size*/
-	  border: 2px dashed #ffcc00;
-	  overflow: hidden;
-	  cursor: pointer;
-	  transition: transform 0.3s ease;
-	}
-
+    .project-card {
+      position: relative;
+      width: 27%;
+      border: 2px dashed #ffcc00;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
 
     .project-card:hover {
       transform: scale(1.02);
@@ -184,6 +183,9 @@
       color: #fff;
     }
 
+    /* ------------------------------ */
+    /* ABOUT SECTION (LEFT DOT ONLY)  */
+    /* ------------------------------ */
     #about {
       display: flex;
       justify-content: center;
@@ -212,6 +214,7 @@
       color: #111;
     }
 
+    /* About section divider WITHOUT center dot */
     .about-text .divider {
       position: relative;
       width: 90px;
@@ -224,15 +227,16 @@
     .about-text .divider::before {
       content: "";
       position: absolute;
-      left: -8px;
+      left: 0;
       top: 50%;
       transform: translateY(-50%);
-      width: 8px;
-      height: 8px;
+      width: 10px;
+      height: 10px;
       background: #d12d2d;
       border-radius: 50%;
     }
 
+    /* CONTACT */
     #contact {
       background: #ffcc00;
       padding: 80px 20px;
@@ -279,14 +283,16 @@
 
   <section id="home">
     <h1>Evangelos Bangoudis</h1>
+
+    <!-- This divider has a centered dot -->
     <div class="divider"></div>
+
     <p>Hello! Glad to see you here. This is a collection of my personal data science and analytics projects made during my free time.</p>
 
     <div class="category-bar"></div>
 
     <div class="project-showcase">
 
-      <!-- Project 1 -->
       <a href="space-race.html" class="project-card">
         <img src="space race.png" alt="Who leads the space race?">
         <div class="project-overlay">
@@ -295,7 +301,6 @@
         </div>
       </a>
 
-      <!-- Project 2 -->
       <a href="btree.html" class="project-card">
         <img src="btree.png" alt="B-Tree Data Structure">
         <div class="project-overlay">
@@ -304,7 +309,6 @@
         </div>
       </a>
 
-      <!-- Project 3 (NEW → WIKIRACER) -->
       <a href="wikiracer.html" class="project-card">
         <img src="wikiracer.png" alt="WikiRacer">
         <div class="project-overlay">
@@ -320,7 +324,10 @@
     <img src="pic me.jpg" alt="Evangelos Bangoudis">
     <div class="about-text">
       <h2>About Me</h2>
+
+      <!-- This divider has ONLY left-dot -->
       <div class="divider"></div>
+
       <p>I’m a Data Scientist currently pursuing my Master’s degree in Data Science at the University of Texas at Austin.</p>
       <p>Beyond data science, I enjoy mathematics, learning new things, and traveling the world.</p>
       <p>I’m fluent in English, German, and Greek.</p>
@@ -357,7 +364,6 @@
       }
     });
 
-    // Smooth scroll without URL change
     document.querySelectorAll('nav a[data-target]').forEach(link => {
       link.addEventListener('click', (e) => {
         e.preventDefault();
