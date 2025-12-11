@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>B-Tree Data Structure | Evangelos Bangoudis</title>
 
-  <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
 
   <style>
@@ -46,10 +45,7 @@
       font-weight: 600;
       color: #000;
     }
-
-    nav a:hover {
-      color: #d12d2d;
-    }
+    nav a:hover { color: #d12d2d; }
 
     /* BACK BUTTON */
     .back-btn {
@@ -68,10 +64,7 @@
       cursor: pointer;
       transition: 0.25s ease;
     }
-
-    .back-btn:hover {
-      transform: scale(1.12);
-    }
+    .back-btn:hover { transform: scale(1.12); }
 
     /* MAIN CONTENT */
     .content {
@@ -81,12 +74,8 @@
       text-align: center;
     }
 
-    h1 {
-      font-size: 2.4rem;
-      margin-bottom: 0.5rem;
-    }
+    h1 { font-size: 2.4rem; margin-bottom: 0.5rem; }
 
-    /* DIVIDER */
     .divider {
       position: relative;
       width: 140px;
@@ -95,7 +84,6 @@
       margin: 18px auto;
       border-radius: 5px;
     }
-
     .divider::after {
       content: "";
       position: absolute;
@@ -127,46 +115,45 @@
       font-weight: 600;
     }
 
-    /* CARD STYLING */
+    /* CARD LAYOUT */
+    .card-wrapper {
+      width: 80%;
+      margin: 40px auto;
+      display: flex;
+      justify-content: center;
+    }
+
     .overview-card {
       background: white;
       padding: 30px 40px;
-      margin: 0 auto 40px;
-      width: 70%;
+      width: 100%;
       border-radius: 14px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.08);
       line-height: 1.6;
       color: #444;
+      text-align: left;        /* 🔥 FIX: left-aligned text */
     }
 
     .overview-icon {
       font-size: 2.8rem;
-      text-align: center;
       margin-bottom: 10px;
       color: #0a66c2;
+      text-align: center;
     }
 
     .overview-title {
-      text-align: center;
       font-size: 1.4rem;
       font-weight: 700;
       margin-bottom: 12px;
-      color: #222;
+      text-align: center;
     }
 
     .overview-card ul {
       padding-left: 22px;
-      margin: 0;
       list-style-type: disc;
-      text-align: left;
     }
 
-    .overview-card li {
-      margin-bottom: 6px;
-      line-height: 1.55;
-    }
-
-    /* === 3-COLUMN TASK SECTION === */
+    /* TASK CARDS */
     .task-section {
       display: flex;
       justify-content: center;
@@ -180,55 +167,49 @@
       padding: 22px 20px;
       width: 30%;
       border-radius: 14px;
-      text-align: center;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-      transition: 0.25s ease;
-    }
-
-    .task-card ul {
-      padding-left: 22px;
       text-align: left;
-      list-style-type: disc;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.08);
     }
 
     .task-icon {
       font-size: 2.4rem;
       color: #0a66c2;
       margin-bottom: 8px;
+      text-align: center;
     }
 
     .task-title {
-      font-weight: 700;
       font-size: 1.2rem;
+      font-weight: 700;
+      text-align: center;
       margin-bottom: 10px;
     }
 
-    /* Visualization image styling */
+    /* IMAGE */
     .viz-image {
-      display: block;
-      width: 90%;
-      margin: 20px auto;
+      width: 100%;
       border-radius: 10px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.18);
     }
 
-    /* SIGNATURE SECTION */
+    /* SIGNATURE SECTION WITH NEW FONT */
     .signature-section {
       text-align: center;
       padding: 70px 20px;
-      background: #f3f7fa;
-      margin-top: 40px;
+      background: #e6e9ec;
+      margin-top: 60px;
+      font-family: Georgia, serif;   /* 🔥 NEW FONT */
     }
 
     .signature-section h2 {
-      font-size: 2rem;
+      font-size: 2.2rem;
       font-weight: 700;
-      margin-bottom: 10px;
+      color: #222;
     }
 
     .signature-section p {
-      font-size: 1rem;
-      color: #666;
+      font-size: 1.1rem;
+      color: #555;
       margin: 4px 0;
       font-style: italic;
     }
@@ -267,7 +248,7 @@
   <!-- BACK BUTTON -->
   <div class="back-btn" onclick="location.href='index.html'">←</div>
 
-  <!-- TITLE & TAGS -->
+  <!-- TITLE -->
   <div class="content">
     <h1>B-Tree Data Structure</h1>
     <div class="divider"></div>
@@ -283,73 +264,73 @@
   </div>
 
   <!-- PROJECT OVERVIEW -->
-  <div class="overview-card">
-    <div class="overview-icon">📘</div>
-    <div class="overview-title">Project Overview</div>
-    <p>
-      This project implements a disk-based B-Tree data structure that simulates how
-      databases manage indexing when nodes must be persisted to disk instead of memory.
-      The tree supports efficient insert and find operations while maintaining balance.
-    </p>
+  <div class="card-wrapper">
+    <div class="overview-card">
+      <div class="overview-icon">📘</div>
+      <div class="overview-title">Project Overview</div>
+      <p>
+        This project implements a disk-based B-Tree data structure that simulates how databases manage indexing when nodes must be persisted to disk instead of memory. The tree supports efficient insert(key, value) and find(key) operations while maintaining balanced height, sorted keys, and configurable branching factors (M and L). Each node is stored in its own disk block through a custom DISK interface, introducing strict constraints that resemble real storage systems.
+      </p>
+    </div>
   </div>
 
-  <!-- RESTORED 3-COLUMN TASK SECTION -->
+  <!-- TASK CARDS -->
   <div class="task-section">
-
-    <!-- Column 1 -->
     <div class="task-card">
       <div class="task-icon">⚙️</div>
       <div class="task-title">Core Operations</div>
       <ul>
-        <li><code>insert(key, value)</code> — Insert or overwrite keys while maintaining invariants</li>
-        <li><code>find(key)</code> — Return the value for a key or <code>None</code></li>
+        <li><code>insert(key, value): insert or overwrite keys while maintaining B-Tree invariants</code></li>
+        <li><code>find(key): return the value for a key or None</code></li>
       </ul>
     </div>
 
-    <!-- Column 2 -->
     <div class="task-card">
       <div class="task-icon">🌲</div>
       <div class="task-title">Structural Constraints</div>
       <ul>
-        <li>Keys remain sorted</li>
+        <li>Nodes remain sorted</li>
         <li>Height stays balanced</li>
-        <li>Branching factors: M (internal nodes), L (leaf nodes)</li>
+        <li>Branching factors defined by M (internal) and L (leaf)</li>
       </ul>
     </div>
 
-    <!-- Column 3 -->
     <div class="task-card">
       <div class="task-icon">💾</div>
       <div class="task-title">Disk-Based Architecture</div>
       <ul>
-        <li>Each node resides in a disk block</li>
-        <li>Only m, l, and the root address stay in memory</li>
-        <li>All interactions go through DISK.new(), DISK.write(), DISK.read()</li>
+        <li>Each node resides in a separate disk block</li>
+        <li>Only m, l, and the root address may stay in memory</li>
+        <li><code>All interactions occur through:DISK.new/write/read</code></li>
       </ul>
     </div>
-
   </div>
 
   <!-- IMPLEMENTATION CARD -->
-  <div class="overview-card" style="margin-top: 50px;">
-    <div class="overview-icon">🧠</div>
-    <div class="overview-title">Implementation & Problem-Solving Highlights</div>
-    <ul>
-      <li>Managing a fully disk-backed data structure requires careful logic.</li>
-      <li>Splits and redistribution required precise debugging.</li>
-      <li>Visualization and tests revealed subtle structural bugs.</li>
-      <li>Ensuring correctness required extensive Pytest coverage.</li>
-    </ul>
+  <div class="card-wrapper">
+    <div class="overview-card">
+      <div class="overview-icon">🧠</div>
+      <div class="overview-title">Implementation & Highlights</div>
+      <ul>
+        <li>Managing a fully disk-backed data structure introduces complexity: every update requires explicit writes, and stale in-memory references easily lead to structural corruption.</li>
+        <li>Node splitting is non-trivial: handling medians, redistributing children, and maintaining invariants across multiple recursive levels requires precise logic, especially when no node can exist purely in memory.</li>
+        <li>Debugging is harder than in-memory trees because errors often arise from incorrect disk writes, missing updates, or reading outdated nodes—issues that normal pointer-based trees don’t encounter.</li>
+        <li>Testing reveals subtle structural bugs (off-by-one errors, incorrect child pointer movement, unbalanced splits), which were identified and resolved using extensive Pytest cases and custom visualizations.</li>
+        <li>Overall, the project demands careful coordination between algorithm design and simulated storage constraints, making it significantly more challenging than standard B-Tree implementations.</li>
+      </ul>
+    </div>
   </div>
 
-  <!-- FINAL IMAGE -->
-  <div class="overview-card">
-    <div class="overview-icon">🖼️</div>
-    <div class="overview-title">Full B-Tree Visualization</div>
-    <img src="btree_visualization.png" class="viz-image" alt="Full B-Tree Visualization">
+  <!-- VISUALIZATION -->
+  <div class="card-wrapper">
+    <div class="overview-card">
+      <div class="overview-icon">🖼️</div>
+      <div class="overview-title">Full B-Tree Visualization</div>
+      <img src="btree_visualization.png" class="viz-image">
+    </div>
   </div>
 
-  <!-- SIGNATURE SECTION -->
+  <!-- SIGNATURE SECTION (NEW FONT) -->
   <div class="signature-section">
     <h2>Evangelos Bangoudis</h2>
     <p>"The future depends on what you do today."</p>
@@ -357,15 +338,13 @@
 
     <div class="signature-icons">
       <a href="https://www.linkedin.com/in/evangelosbangoudis/" target="_blank">
-        <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn">
+        <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png">
       </a>
-
       <a href="mailto:evangelos@bangoudis.com">
-        <img src="https://cdn-icons-png.flaticon.com/512/281/281769.png" alt="Email">
+        <img src="https://cdn-icons-png.flaticon.com/512/281/281769.png">
       </a>
-
       <a href="https://github.com/Evagbagg" target="_blank">
-        <img src="https://cdn-icons-png.flaticon.com/512/733/733553.png" alt="GitHub">
+        <img src="https://cdn-icons-png.flaticon.com/512/733/733553.png">
       </a>
     </div>
   </div>
