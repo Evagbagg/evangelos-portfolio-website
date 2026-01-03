@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Evangelos's Portfolio | SDE & Data Science</title>
+
+
+  
+  <!-- Meta Description for SEO -->
+  <meta name="description" content="Explore Evangelos's portfolio featuring software development, data science, and machine learning projects. Discover real-world applications, skills, and achievements in SDE and AI.">
+
+  <!-- Open Graph Tags for Social Sharing -->
+  <meta property="og:title" content="Evangelos's Portfolio | Data Scientist">
+  <meta property="og:description" content="Portfolio showcasing work in Data Science and AI.">
+  <meta property="og:image" content="content="https://bangoudis.com/assets/images/preview.png">"> <!-- Replace with actual preview image -->
+  <meta property="og:url" content="https://bangoudis.com/">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter Card Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Evangelos's Portfolio | SDE & Data Science">
+  <meta name="twitter:description" content="Projects and experience in software engineering, data science, and AI.">
+  <meta name="twitter:image" content="https://bangoudis.com/assets/images/preview.png">> <!-- Replace if needed -->
+
+  <!-- Favicon -->
+  <link rel="icon" href="assets/favicon2.svg" type="image/svg+xml">
+
+  <!-- CSS Files -->
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components/header.css">
+  <link rel="stylesheet" href="css/components/hero.css">
+  <link rel="stylesheet" href="css/components/about.css">
+  <link rel="stylesheet" href="css/components/experience.css">
+  <link rel="stylesheet" href="css/components/projects.css">
+  <link rel="stylesheet" href="css/components/certifications.css">
+  <link rel="stylesheet" href="css/components/education.css">
+  <link rel="stylesheet" href="css/components/skills.css">    
+  <link rel="stylesheet" href="css/components/contact.css">
+  <link rel="stylesheet" href="css/components/footer.css">
+  <link rel="stylesheet" href="css/components/custom-icons.css">
+  <link rel="stylesheet" href="css/components/modal.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KXC0TJ19FF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-KXC0TJ19FF');
+</script>
+
+
+
+
+<body class="light-theme">
+    <!-- Component placeholders -->
+    <div id="header"></div>
+    <div id="hero"></div>
+    <div id="about"></div>
+    <div id="experience"></div>
+    <div id="education"></div>
+    <div id="projects"></div>
+    <div id="certifications"></div>
+    <div id="skills"></div>
+    <div id="contact"></div>
+    <div id="modalContainer"></div>
+    <div id="footer"></div>
+
+    <!-- JavaScript -->
+    <script src="js/template-engine.js"></script>
+    <script src="js/main.js"></script>    
+    <script>
+        // Wait for DOM content to be loaded
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Load all components
+            await Promise.all([
+                templateEngine.insertComponent('#header', 'components/header.html'),
+                templateEngine.insertComponent('#hero', 'components/hero.html'),
+                templateEngine.insertComponent('#about', 'components/about.html'),
+                templateEngine.insertComponent('#experience', 'components/experience.html'),
+                templateEngine.insertComponent('#education', 'components/education.html'),
+                templateEngine.insertComponent('#projects', 'projects/projects.html'),
+                templateEngine.insertComponent('#certifications', 'components/certifications.html'),
+                templateEngine.insertComponent('#skills', 'components/skills.html'),
+                templateEngine.insertComponent('#contact', 'components/contact.html'),
+                templateEngine.insertComponent('#footer', 'components/footer.html'),
+                templateEngine.insertComponent('#modalContainer', 'components/modal.html'),
+            ]);
+
+            // Initialize the site after components are loaded
+            if (window.initSite) {
+                window.initSite();
+            }
+
+            const savedScroll = sessionStorage.getItem('scrollY');
+            if (savedScroll !== null) {
+                requestAnimationFrame(() => {
+                    window.scrollTo(0, parseInt(savedScroll, 10));
+                    sessionStorage.removeItem('scrollY');
+                });
+            }
+
+            // ⬇️ SCROLL BACK TO PROJECTS IF RETURNING FROM PROJECT PAGE
+            if (sessionStorage.getItem('returnToProjects')) {
+                const tryScroll = () => {
+                    const projects = document.getElementById('projects');
+                    if (projects) {
+                        projects.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        sessionStorage.removeItem('returnToProjects');
+                    } else {
+                        requestAnimationFrame(tryScroll);
+                    }
+                };
+                tryScroll();
+            }
+
+        });
+    </script>
+</body>
+</html>

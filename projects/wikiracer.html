@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KXC0TJ19FF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-KXC0TJ19FF');
+  </script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wikipedia Wikiracer | Evangelos Bangoudis</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+/* EDGE VISUALIZATION */
+.edge-types {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.6rem;
+  margin: 25px 0;
+}
+
+.edge-card {
+  background: #f9fbff;
+  border-radius: 12px;
+  padding: 18px 16px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+  text-align: center;
+}
+
+.edge-title {
+  font-weight: 700;
+  font-size: 1.05rem;
+  margin-bottom: 10px;
+}
+
+.edge-diagram {
+  margin-bottom: 12px;
+}
+
+.node {
+  display: inline-block;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #0a66c2;
+  color: white;
+  font-weight: 700;
+  line-height: 42px;
+  text-align: center;
+}
+
+.arrow {
+  font-size: 1.6rem;
+  margin: 0 10px;
+  font-weight: 700;
+}
+
+/* EXAMPLE IMAGE GRID */
+.example-grid {
+  display: flex;
+  gap: 1.8rem;
+  margin-top: 25px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.example-image {
+  width: 48%;
+  min-width: 280px;
+  background: none;
+  box-shadow: none;
+  border-radius: 0;
+  transition: transform 0.35s ease;
+}
+
+.example-image img {
+  width: 70%;
+  max-width: 420px;
+  margin: 0 auto;
+  display: block;
+}
+
+.example-image:hover {
+  transform: scale(1.04);
+  box-shadow: 0 10px 26px rgba(0,0,0,0.28);
+}
+
+.example-caption {
+  margin-top: 12px;
+  font-size: 0.95rem;
+  color: #555;
+  text-align: center;
+}
+
+body {
+  margin: 0;
+  font-family: 'Open Sans', Arial, sans-serif;
+  background: #f3f7fa;
+  color: #222;
+}
+
+/* BACK BUTTON */
+.back-btn {
+  position: fixed;
+  top: 30px;
+  left: 30px;
+  background: #0a66c2;
+  color: white;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  cursor: pointer;
+  transition: 0.25s ease;
+  z-index: 1000;
+}
+.back-btn:hover { transform: scale(1.12); }
+
+/* MAIN CONTENT */
+.content {
+  padding-top: 80px;
+  max-width: 900px;
+  margin: auto;
+  text-align: center;
+}
+
+h1 { font-size: 2.4rem; margin-bottom: 0.5rem; }
+
+.divider {
+  position: relative;
+  width: 140px;
+  height: 2px;
+  background: #d12d2d;
+  margin: 18px auto;
+  border-radius: 5px;
+}
+.divider::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 10px;
+  background: #d12d2d;
+  border-radius: 50%;
+}
+
+/* TAGS */
+.tag-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+.tag {
+  background: #0a66c2;
+  color: white;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+/* CARD LAYOUT */
+.card-wrapper {
+  width: 80%;
+  margin: 40px auto;
+  display: flex;
+  justify-content: center;
+}
+
+.overview-card {
+  background: white;
+  padding: 30px 40px;
+  width: 100%;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  line-height: 1.6;
+  color: #444;
+  text-align: left;
+}
+
+.overview-icon {
+  font-size: 2.8rem;
+  margin-bottom: 10px;
+  color: #0a66c2;
+  text-align: center;
+}
+
+.overview-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.note {
+  margin-top: 18px;
+  padding: 14px 16px;
+  background: #eef4ff;
+  border-left: 4px solid #0a66c2;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+/* SIGNATURE */
+.signature-section {
+  text-align: center;
+  padding: 70px 20px;
+  background: #e6e9ec;
+  margin-top: 60px;
+  font-family: Georgia, serif;
+}
+.signature-icons img {
+  width: 45px;
+  height: 45px;
+  transition: 0.25s ease;
+}
+.signature-icons img:hover {
+  transform: scale(1.12);
+}
+
+.signature-icons {
+  display: flex;
+  justify-content: center;
+  gap: 1.2rem;
+  margin-top: 20px;
+}
+
+  </style>
+</head>
+
+<script>
+function goBack() {
+  sessionStorage.setItem('projectsScrollY', window.scrollY);
+  window.location.href = '../index.html';
+}
+</script>
+
+
+<body>
+
+  <!-- BACK BUTTON -->
+  <div class="back-btn" onclick="history.back()">←</div>
+
+
+
+
+  <!-- TITLE -->
+  <div class="content">
+    <h1>Wikipedia Wikiracer</h1>
+    <div class="divider"></div>
+
+    <div class="tag-container">
+      <span class="tag">Python</span>
+      <span class="tag">Graph Algorithms</span>
+      <span class="tag">Algorithm Engineering</span>
+      <span class="tag">Asynchronous Processing</span>
+      <span class="tag">Web Crawling</span>
+      <span class="tag">Performance Optimization</span>
+      <span class="tag">Testing & Validation</span>
+    </div>
+  </div>
+
+  <!-- EVERYTHING ELSE BELOW IS UNCHANGED -->
+     <!-- PROJECT OVERVIEW -->
+  <div class="card-wrapper">
+    <div class="overview-card">
+      <div class="overview-icon">🌐</div>
+      <div class="overview-title">Project Overview</div>
+      <p>
+        This project implements the <strong>Wikiracer</strong> game, a navigation challenge based on Wikipedia.
+        Wikiracing is a game in which players attempt to move from one Wikipedia article to another using only internal
+        Wikipedia links. All allowed links follow the format <code>/wiki/Page_Name</code>, ensuring that navigation stays
+        strictly within Wikipedia.
+      </p>
+      <p>
+        In this project, we are given two Wikipedia articles: a start page and a goal page. The task is to reach the goal page starting from the source page by clicking only the links found inside the articles we visit.
+      </p>
+    </div>
+  </div>
+
+  
+
+  <!-- EXAMPLE CARD -->
+<!-- WIKIPEDIA AS A GRAPH -->
+  <!-- WIKIPEDIA AS A GRAPH -->
+  <div class="card-wrapper">
+    <div class="overview-card">
+      <div class="overview-icon">🧩</div>
+      <div class="overview-title">Wikipedia as a Graph</div>
+
+      <p>
+        To solve this problem algorithmically, Wikipedia is modeled as a
+        <strong>directed graph</strong> where Wikipedia pages are nodes and hyperlinks are edges between pages.
+      </p>
+
+      <div class="edge-types">
+
+        <div class="edge-card">
+          <div class="edge-title">Bidirectional</div>
+          <div class="edge-diagram">
+            <span class="node">A</span>
+            <span class="arrow">↔</span>
+            <span class="node">B</span>
+          </div>
+          <p>
+            Page A links to Page B, and Page B links back to Page A.
+          </p>
+        </div>
+
+        <div class="edge-card">
+          <div class="edge-title">One-way (A → B)</div>
+          <div class="edge-diagram">
+            <span class="node">A</span>
+            <span class="arrow">→</span>
+            <span class="node">B</span>
+          </div>
+          <p>
+            Page A links to Page B, but Page B does not link back.
+          </p>
+        </div>
+
+        <div class="edge-card">
+          <div class="edge-title">One-way (B → A)</div>
+          <div class="edge-diagram">
+            <span class="node">B</span>
+            <span class="arrow">→</span>
+            <span class="node">A</span>
+          </div>
+          <p>
+            Page B links to Page A, but Page A does not link back.
+          </p>
+        </div>
+
+      </div>
+
+      <p>
+        Because hyperlinks are not guaranteed to be reciprocal, directionality plays
+        a critical role in how graph search algorithms behave.
+      </p>
+    </div>
+  </div>
+<!-- PROJECT GOAL: EFFICIENCY -->
+<div class="card-wrapper">
+  <div class="overview-card">
+    <div class="overview-icon">⚡</div>
+    <div class="overview-title">Project Goal: Efficiency</div>
+
+    <p>
+      The main goal of the project is to find a path between two Wikipedia pages as
+      <strong>efficiently as possible</strong>.
+    </p>
+
+    <p>Efficiency is measured in two ways:</p>
+
+    <ul>
+      <li>
+        <strong>Number of links (clicks)</strong><br>
+        Each click represents moving from one page to another via a hyperlink.
+        Fewer clicks correspond to a shorter path.
+      </li>
+      <br>
+      <li>
+        <strong>Number of page downloads (resources)</strong><br>
+        Each time a page is accessed, its HTML must be downloaded.
+        Downloads are computationally expensive and dominate runtime.
+      </li>
+    </ul>
+
+    <p>
+      While traditional graph algorithms focus on minimizing clicks, the final
+      <strong>Wikiracer implementation prioritizes minimizing page downloads</strong>,
+      even if the resulting path contains more links. This reflects the real-world
+      constraint that network requests are far more costly than local computation.
+    </p>
+  </div>
+</div>
+
+
+
+<!-- EXAMPLE OF WIKIRACER -->
+<div class="card-wrapper">
+  <div class="overview-card">
+    <div class="overview-icon">🎯</div>
+    <div class="overview-title">Example of a Wikiracer Game</div>
+
+    <p>
+      Have you ever wondered what the <strong>Andromeda Galaxy</strong> and
+      <strong>Alexander the Great</strong> have in common?
+    </p>
+
+    <p>
+      There is <strong>one path with only 2 steps</strong> that allow us to reach
+      <em>Alexander the Great from Andromeda Galaxy</em>. Surprisingly, there are also
+      <strong>114 different paths with 3 steps</strong> that allow us to do the opposite.
+    </p>
+
+    <p>
+      This example highlights how non-obvious connections emerge when navigating
+      Wikipedia as a graph.
+    </p>
+
+    <div class="example-grid">
+      <div class="example-image">
+        <img src="../assets/projects/Andromeda_to_Alexander.png" alt="Andromeda to Alexander path">
+      </div>
+
+      <div class="example-image">
+        <img src="../assets/projects/Alexander_to_Andromeda.png" alt="Alexander to Andromeda paths">
+      </div>
+    </div>
+
+    <p class="example-caption">
+      Visualized paths generated by <em>sixdegreesofwikipedia.com</em>
+    </p>
+
+    <p>
+      For more examples, visit
+      <a href="https://www.sixdegreesofwikipedia.com/" target="_blank">
+        sixdegreesofwikipedia.com
+      </a>.
+    </p>
+  </div>
+</div>
+
+
+<!-- SOLUTIONS & CUSTOM WIKIRACER -->
+<div class="card-wrapper">
+  <div class="overview-card">
+    <div class="overview-icon">🧭</div>
+    <div class="overview-title">Solutions</div>
+
+    <p>
+      The project is approached using three different algorithms:
+      <strong>Breadth-First Search (BFS)</strong>,
+      <strong>Depth-First Search (DFS)</strong>, and a
+      <strong>Custom Asynchronous BFS Wikiracer</strong>.
+      While BFS and DFS serve as foundational baselines for understanding graph traversal
+      and path discovery, the third algorithm is the most critical component of the project.
+    </p>
+
+    <ul>
+      <li>
+        <strong>Breadth-First Search (BFS)</strong><br>
+        BFS explores Wikipedia level by level, guaranteeing the shortest path in terms of
+        clicks and avoiding deep, misleading navigation paths early on.
+      </li>
+      <br>
+
+      <li>
+        <strong>Depth-First Search (DFS)</strong><br>
+        DFS commits to long, narrow link chains without context, often diving into
+        irrelevant topics and wasting many page downloads before discovering whether a
+        path toward the goal even exists.
+      </li>
+      <br>
+
+      <li>
+        <strong>Custom Asynchronous BFS Wikiracer</strong><br>
+        The third and most important algorithm is a custom Asynchronous Breadth-First Search. Instead of expanding the graph from only the source page, the algorithm 
+		searches simultaneously from both the 
+        <strong>source</strong> and the <strong>target page</strong>. However, a path discovered from the target to the source 
+		does not automatically imply a valid solution, since Wikipedia links are 
+		directed and the goal is to find a path from source to target.
+      </li>
+    </ul>
+
+    <p><strong>Efficiency strategies used by the custom Wikiracer:</strong></p>
+
+    <ol>
+      <li>
+        <strong>Take the Highway Strategy</strong><br>
+        Prioritizes highly connected and well-known Wikipedia hub pages that statistically
+        increase the likelihood of quickly reaching the target.
+      </li>
+      <br>
+      <li>
+        <strong>Semantic Link Similarity Detection</strong><br>
+        Increases priority for semantically related links by comparing page names for
+        shared words or meaningful substrings (e.g. <em>Germany_technology</em> and
+        <em>German_language</em>),under the assumption that semantically related pages are more likely to converge.
+      </li>
+      <br>
+      <li>
+        <strong>Search Depth Limitation</strong><br>
+        Most Wikipedia pages can be connected within a small number of links (often under six). 
+		To prevent the algorithm from exploring deep, unproductive paths and entering large loops, a maximum exploration depth is enforced. 
+      </li>
+    </ol>
+
+    <div class="note">
+      <strong>Note:</strong> To ensure consistent results, the project was developed and
+      tested using a frozen snapshot of Wikipedia. The final solution passed over
+      <strong>150 automated tests</strong>, evaluating both correctness and efficiency.
+    </div>
+	
+	    <div class="note">
+      <strong>Academic Notice:</strong> This project was developed as part of coursework for the
+  <strong>University of Texas at Austin</strong> and is subject to the
+  university’s <strong>Academic Honesty and Integrity</strong> policies.
+    </div>
+  </div>
+</div>
+
+
+
+
+  <!-- (Project Overview, Graph, Examples, Solutions, Signature Section) -->
+
+  <!-- SIGNATURE SECTION -->
+  <div class="signature-section">
+    <h2>Evangelos Bangoudis</h2>
+    <p>"The future depends on what you do today."</p>
+    <p>- Mahatma Gandhi</p>
+
+    <div class="signature-icons">
+      <a href="https://www.linkedin.com/in/evangelosbangoudis/" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn">
+      </a>
+      <a href="mailto:evangelos@bangoudis.com">
+        <img src="https://cdn-icons-png.flaticon.com/512/281/281769.png" alt="Email">
+      </a>
+      <a href="https://github.com/Evagbagg" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/733/733553.png" alt="GitHub">
+      </a>
+    </div>
+  </div>
+
+</body>
+</html>

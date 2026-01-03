@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KXC0TJ19FF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-KXC0TJ19FF');
+  </script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>B-Tree Data Structure | Evangelos Bangoudis</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+body {
+  margin: 0;
+  font-family: 'Open Sans', Arial, sans-serif;
+  background: #f3f7fa;
+  color: #222;
+}
+
+/* BACK BUTTON */
+.back-btn {
+  position: fixed;
+  top: 30px;
+  left: 30px;
+  background: #0a66c2;
+  color: white;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  cursor: pointer;
+  transition: 0.25s ease;
+  z-index: 1000;
+}
+.back-btn:hover { transform: scale(1.12); }
+
+/* MAIN CONTENT */
+.content {
+  padding-top: 80px;
+  max-width: 900px;
+  margin: auto;
+  text-align: center;
+}
+
+h1 { font-size: 2.4rem; margin-bottom: 0.5rem; }
+
+.divider {
+  position: relative;
+  width: 140px;
+  height: 2px;
+  background: #d12d2d;
+  margin: 18px auto;
+  border-radius: 5px;
+}
+.divider::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 10px;
+  background: #d12d2d;
+  border-radius: 50%;
+}
+
+/* TAGS */
+.tag-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+.tag {
+  background: #0a66c2;
+  color: white;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+/* CARD LAYOUT */
+.card-wrapper {
+  width: 80%;
+  margin: 40px auto;
+  display: flex;
+  justify-content: center;
+}
+
+.overview-card {
+  background: white;
+  padding: 30px 40px;
+  width: 100%;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  line-height: 1.6;
+  color: #444;
+  text-align: left;
+}
+
+.overview-icon {
+  font-size: 2.8rem;
+  margin-bottom: 10px;
+  color: #0a66c2;
+  text-align: center;
+}
+
+.overview-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.overview-card ul {
+  padding-left: 22px;
+  list-style-type: disc;
+}
+
+/* TASK CARDS */
+.task-section {
+  display: flex;
+  justify-content: center;
+  gap: 2.5rem;
+  padding: 0 10%;
+  margin-top: 50px;
+}
+
+.task-card {
+  background: white;
+  padding: 22px 20px;
+  width: 30%;
+  border-radius: 14px;
+  text-align: left;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+}
+
+.task-icon {
+  font-size: 2.4rem;
+  color: #0a66c2;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.task-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+/* IMAGE */
+.viz-image {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.18);
+}
+
+/* NOTE */
+.note {
+  margin-top: 18px;
+  padding: 14px 16px;
+  background: #eef4ff;
+  border-left: 4px solid #0a66c2;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* SIGNATURE */
+.signature-section {
+  text-align: center;
+  padding: 70px 20px;
+  background: #e6e9ec;
+  margin-top: 60px;
+  font-family: Georgia, serif;
+}
+
+.signature-section h2 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #222;
+}
+
+.signature-section p {
+  font-size: 1.1rem;
+  color: #555;
+  margin: 4px 0;
+  font-style: italic;
+}
+
+.signature-icons {
+  display: flex;
+  justify-content: center;
+  gap: 1.2rem;
+  margin-top: 20px;
+}
+
+.signature-icons img {
+  width: 45px;
+  height: 45px;
+  transition: 0.25s ease;
+}
+.signature-icons img:hover {
+  transform: scale(1.12);
+}
+  </style>
+</head>
+
+<body>
+
+  <!-- BACK BUTTON -->
+  <div class="back-btn" onclick="history.back()">←</div>
+
+  <!-- TITLE -->
+  <div class="content">
+    <h1>B-Tree Data Structure</h1>
+    <div class="divider"></div>
+
+    <div class="tag-container">
+      <span class="tag">Python</span>
+      <span class="tag">Algorithm Design</span>
+      <span class="tag">Systems Programming</span>
+      <span class="tag">Disk-Based Data Structures</span>
+      <span class="tag">Performance Optimization</span>
+      <span class="tag">Testing & Validation</span>
+    </div>
+  </div>
+
+  <!-- PROJECT OVERVIEW -->
+  <div class="card-wrapper">
+    <div class="overview-card">
+      <div class="overview-icon">📘</div>
+      <div class="overview-title">Project Overview</div>
+      <p>
+        This project implements a disk-based B-Tree data structure that simulates how databases manage indexing when nodes must be persisted to disk instead of memory. The tree supports efficient insert(key, value) and find(key) operations while maintaining balanced height, sorted keys, and configurable branching factors (M and L). Each node is stored in its own disk block through a custom DISK interface, introducing strict constraints that resemble real storage systems.
+      </p>
+    </div>
+  </div>
+
+  <!-- TASK CARDS -->
+  <div class="task-section">
+    <div class="task-card">
+      <div class="task-icon">⚙️</div>
+      <div class="task-title">Core Operations</div>
+      <ul>
+        <li><code>insert(key, value): insert or overwrite keys while maintaining B-Tree invariants</code></li>
+        <li><code>find(key): return the value for a key or None</code></li>
+      </ul>
+    </div>
+
+    <div class="task-card">
+      <div class="task-icon">🌲</div>
+      <div class="task-title">Structural Constraints</div>
+      <ul>
+        <li>Nodes remain sorted</li>
+        <li>Height stays balanced</li>
+        <li>Branching factors defined by M (internal) and L (leaf)</li>
+      </ul>
+    </div>
+
+    <div class="task-card">
+      <div class="task-icon">💾</div>
+      <div class="task-title">Disk-Based Architecture</div>
+      <ul>
+        <li>Each node resides in a separate disk block</li>
+        <li>Only m, l, and the root address may stay in memory</li>
+        <li><code>All interactions occur through: DISK.new / DISK.write / DISK.read</code></li>
+      </ul>
+    </div>
+  </div>
+
+<!-- IMPLEMENTATION CARD -->
+<div class="card-wrapper">
+  <div class="overview-card">
+    <div class="overview-icon">🧠</div>
+    <div class="overview-title">Implementation & Highlights</div>
+
+    <ul>
+      <li>Managing a fully disk-backed data structure introduces complexity: every update requires explicit writes, and stale in-memory references easily lead to structural corruption.</li>
+      <li>Node splitting is non-trivial: handling medians, redistributing children, and maintaining invariants across multiple recursive levels requires precise logic, especially when no node can exist purely in memory.</li>
+      <li>Debugging is harder than in-memory trees because errors often arise from incorrect disk writes, missing updates, or reading outdated nodes—issues that normal pointer-based trees don’t encounter.</li>
+      <li>Testing reveals subtle structural bugs (off-by-one errors, incorrect child pointer movement, unbalanced splits), which were identified and resolved using extensive Pytest cases and custom visualizations.</li>
+      <li>Overall, the project demands careful coordination between algorithm design and simulated storage constraints, making it significantly more challenging than standard B-Tree implementations.</li>
+    </ul>
+
+    <div class="note">
+      <strong>Academic Notice:</strong>
+      This project was developed as part of coursework for the
+      <strong>University of Texas at Austin</strong> and is subject to the
+      university’s <strong>Academic Honesty and Integrity</strong> policies.
+    </div>
+  </div>
+</div>
+
+
+<!-- VISUALIZATION CARD -->
+<div class="card-wrapper">
+  <div class="overview-card">
+    <div class="overview-icon">🖼️</div>
+    <div class="overview-title">Full B-Tree Visualization</div>
+    <img src="../assets/projects/btree_visualization.png" class="viz-image">
+  </div>
+</div>
+
+
+  <!-- SIGNATURE SECTION (NEW FONT) -->
+  <div class="signature-section">
+    <h2>Evangelos Bangoudis</h2>
+    <p>"The future depends on what you do today."</p>
+    <p>- Mahatma Gandhi</p>
+
+    <div class="signature-icons">
+      <a href="https://www.linkedin.com/in/evangelosbangoudis/" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png">
+      </a>
+      <a href="mailto:evangelos@bangoudis.com">
+        <img src="https://cdn-icons-png.flaticon.com/512/281/281769.png">
+      </a>
+      <a href="https://github.com/Evagbagg" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/733/733553.png">
+      </a>
+    </div>
+  </div>
+
+</body>
+</html>
